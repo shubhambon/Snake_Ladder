@@ -1,48 +1,40 @@
 package com.bridgelabz;
 
+import java.util.Scanner;
+
 public class SnakeLadder {
-    public static void main(String[] args) {
+   public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
 
         int position = 0;
-        System.out.println(" Welcome player!! ");
-
-
         int dice;
         int option;
-        int roll = 0;
+        System.out.println("Welcome Player");
 
-
-        while (position < 100) {
-            dice = (int)Math.floor( (Math.random() * 10) % 6 + 1);
-            System.out.println("\n The dice was rolled to: " + dice);
+        while (position <= 100) {
+            System.out.println("Enter 1 to roll a die");
+            int die = in.nextInt();
+            dice = (int)Math.floor((Math.random() * 10) % 6 + 1);
+            System.out.println("\n The dice rolled to: " + dice);
             option = (int)Math.floor(Math.random() * 3);
 
-            switch(option) {
-                case 0:
-                    System.out.println(" Player action: nothing");
-                    break;
-                case 1:
-                    System.out.println(" Player action: ladder");
+            switch (option) {
+                case 0 -> System.out.println("Player action: Nothing");
+                case 1 -> {
+                    System.out.println("Player action: Ladder");
                     position += dice;
-                    if (position > 100) {
-                        position -= dice;
-                        System.out.println(" Exceeded 100 so not counting");
-                    }
-                    break;
-                case 2:
-                    System.out.println(" Player action: snake");
+                }
+                case 2 -> {
+                    System.out.println("Player Action: Snake");
                     position -= dice;
-                    position = position < 0 ? 0 : position;
-                    break;
-
+                    position = Math.max(position, 0);
+                }
             }
 
-            System.out.println(" Current position: " + position);
-            roll++;
+            System.out.println("Current position:" + position);
         }
-
-        System.out.println(" Congratulations!! You took " + roll + " rolls to win the game!!");
+        System.out.println("Congratulations You Won");
     }
-
 }
+
 
