@@ -4,23 +4,45 @@ public class SnakeLadder {
     public static void main(String[] args) {
 
         int position = 0;
-        System.out.println(" Player Checks for a option");
+        System.out.println(" Welcome player!! ");
 
-        int randomv = (int) Math.floor(Math.random() * 10) % 6 + 1;
-        System.out.println(" Number Got: " + randomv);
 
-        int option = (int) Math.floor(Math.random() * 10) % 3;
+        int dice;
+        int option;
+        int roll = 0;
 
-        if (option == 0) {
-            System.out.println(" Player Action : No Play");
-        } else if (option == 1) {
-            System.out.println(" Player Action : Ladder");
-            position += randomv;
-        } else if (option == 2) {
-            System.out.println(" Player Action : Snake");
-            position -= randomv;
+
+        while (position < 100) {
+            dice = (int)Math.floor( (Math.random() * 10) % 6 + 1);
+            System.out.println("\n The dice was rolled to: " + dice);
+            option = (int)Math.floor(Math.random() * 3);
+
+            switch(option) {
+                case 0:
+                    System.out.println(" Player action: nothing");
+                    break;
+                case 1:
+                    System.out.println(" Player action: ladder");
+                    position += dice;
+                    if (position > 100) {
+                        position -= dice;
+                        System.out.println(" Exceeded 100 so not counting");
+                    }
+                    break;
+                case 2:
+                    System.out.println(" Player action: snake");
+                    position -= dice;
+                    position = position < 0 ? 0 : position;
+                    break;
+
+            }
+
+            System.out.println(" Current position: " + position);
+            roll++;
         }
 
-        System.out.println("Current Position" + position);
+        System.out.println(" Congratulations!! You took " + roll + " rolls to win the game!!");
     }
+
 }
+
